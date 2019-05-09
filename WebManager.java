@@ -25,6 +25,7 @@ public class WebManager {
 		discription = sc.nextLine();
 
 		discription = discription.replace(",", ";");
+		sc.close();
 		// clean input
 		return discription;
 
@@ -46,6 +47,7 @@ public class WebManager {
 		//System.out.println("Courses Prefix: ");
 		
 		sc.nextLine(); //wait before going to ending
+		sc.close();
 		return list_of_classes;
 		
 		

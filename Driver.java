@@ -1,9 +1,5 @@
-
-package Main;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,13 +7,13 @@ import java.nio.file.Paths;
 
 public class Driver {
 	public static void main(String[] args) throws IOException {
-		
-		
+		parseCourseList();
 	}
-	//use after get class list
+
+	// use after get class list
 	public static void parseCourseList() {
 		StringBuilder sb = new StringBuilder();
-		try (BufferedReader br = Files.newBufferedReader(Paths.get("subjectList.txt"))) {
+		try (BufferedReader br = Files.newBufferedReader(Paths.get("unparsedCourseList.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				sb.append(line + "\n");
@@ -25,7 +21,10 @@ public class Driver {
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
 		}
+		Format.FormatUtils.writeForExcell(sb.toString());
+
 	}
+
 	public static void getClassList() throws IOException {
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = Files.newBufferedReader(Paths.get("subjectList.txt"))) {
@@ -40,14 +39,14 @@ public class Driver {
 		for (String l : lines) {
 			WebManager.openPrefix(l);
 		}
-		
-		//String list_of_classes = WebManager.openPrefix("ACTG");
-	
+
+		// String list_of_classes = WebManager.openPrefix("ACTG");
+
 	}
-	
-	//being replaced
+
+	// being replaced
 	public static void findClassInfo() throws IOException {
-		String disc = "hi";
+
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = Files.newBufferedReader(Paths.get("courses.txt"))) {
 			String line;
@@ -65,5 +64,5 @@ public class Driver {
 		}
 		writer.close();
 	}
-	
+
 }
