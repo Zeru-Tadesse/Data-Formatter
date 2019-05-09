@@ -11,7 +11,42 @@ import java.nio.file.Paths;
 
 public class Driver {
 	public static void main(String[] args) throws IOException {
-		//String disc = WebManager.openAndWait("cs", "345");
+		
+		
+	}
+	//use after get class list
+	public static void parseCourseList() {
+		StringBuilder sb = new StringBuilder();
+		try (BufferedReader br = Files.newBufferedReader(Paths.get("subjectList.txt"))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			System.err.format("IOException: %s%n", e);
+		}
+	}
+	public static void getClassList() throws IOException {
+		StringBuilder sb = new StringBuilder();
+		try (BufferedReader br = Files.newBufferedReader(Paths.get("subjectList.txt"))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			System.err.format("IOException: %s%n", e);
+		}
+		String[] lines = sb.toString().split("\n");
+		for (String l : lines) {
+			WebManager.openPrefix(l);
+		}
+		
+		//String list_of_classes = WebManager.openPrefix("ACTG");
+	
+	}
+	
+	//being replaced
+	public static void findClassInfo() throws IOException {
 		String disc = "hi";
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = Files.newBufferedReader(Paths.get("courses.txt"))) {
@@ -22,12 +57,13 @@ public class Driver {
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
 		}
-		BufferedWriter writer = new BufferedWriter (new FileWriter("newFile.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("newFile.txt"));
 		String[] lines = sb.toString().split("\n");
 		for (String l : lines) {
-			writer.append( WebManager.openAndWait(l.split("\t")[0], l.split("\t")[1]));
+			writer.append(WebManager.openClass(l.split("\t")[0], l.split("\t")[1]));
 			writer.append("\n");
 		}
 		writer.close();
 	}
+	
 }
