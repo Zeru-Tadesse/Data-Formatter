@@ -30,11 +30,12 @@ public class WebManager {
 		return discription;
 
 	}
-	
+
 	public static String openPrefix(String prefix) {
 		String list_of_classes = "";
-		
-		String url = "http://catalog.jmu.edu/content.php?filter%5B27%5D="+prefix+"&filter%5B29%5D=&filter%5Bcourse_type%5D=-1&filter%5Bkeyword%5D=&filter%5B32%5D=1&filter%5Bcpage%5D=1&cur_cat_oid=10&expand=&navoid=358&search_database=Filter#acalog_template_course_filter";
+
+		String url = "http://catalog.jmu.edu/content.php?filter%5B27%5D=" + prefix
+				+ "&filter%5B29%5D=&filter%5Bcourse_type%5D=-1&filter%5Bkeyword%5D=&filter%5B32%5D=1&filter%5Bcpage%5D=1&cur_cat_oid=10&expand=&navoid=358&search_database=Filter#acalog_template_course_filter";
 		try {
 			Desktop desktop = java.awt.Desktop.getDesktop();
 			URI oURL = new URI(url);
@@ -42,16 +43,15 @@ public class WebManager {
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
-		
+
 		Scanner sc = new Scanner(System.in);
-		//System.out.println("Courses Prefix: ");
-		
-		sc.nextLine(); //wait before going to ending
+		// System.out.println("Courses Prefix: ");
+
+		sc.nextLine(); // wait before going to ending
 		sc.close();
 		return list_of_classes;
-		
-		
+
 	}
 	//
-	
+
 }
